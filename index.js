@@ -5,13 +5,8 @@ const cors = require("cors");
 const ACTIONS = require("./Action");
 
 const app = express();
-const server = http.createServer(app, {
-  keepAlive: true,
-});
-const io = new Server(server, {
-  pingInterval: 10000,
-  keepAlive: true,
-});
+const server = http.createServer(app);
+const io = new Server(server);
 const port = process.env.PORT || 3001;
 
 app.use(cors());
@@ -65,11 +60,6 @@ io.on("connection", (socket) => {
 
 app.get("/", (req, res) => {
   res.send(req.body);
-});
-
-app.post("/result", (req, res) => {
-  const result = req.body;
-  res.send(result);
 });
 
 server.listen(port, () => {
