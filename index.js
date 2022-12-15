@@ -59,7 +59,7 @@ io.on("connection", (socket) => {
 });
 
 app.get("/", (req, res) => {
-  res.send(req.body);
+  res.send({ status: "ok" });
 });
 
 server.listen(port, () => {
